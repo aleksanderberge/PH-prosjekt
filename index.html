@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pernille &amp; Henrik – Kjøkken &amp; Kjærlighet</title>
+  <meta name="description" content="Pernille & Henrik – Kjøkken & Kjærlighet. Laget med lidenskap, servert med stolthet. Bekreft din reservasjon." />
+
+  <!-- Merkevarefonter (med lokale fallbacks om nett mangler) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600&family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --gold: #D6B06A;
+      --gold-soft: #e6cc93;
+      --gold-dim: rgba(214, 176, 106, 0.35);
+      --bg: #0e0b08;
+      --bg-2: #17110c;
+      --panel: #1c150e;
+      --text: #f2e9da;
+      --text-dim: #bcae97;
+      --serif: "Cormorant Garamond", "Baskerville", "Times New Roman", serif;
+      --sans: "Montserrat", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+      --script: "Dancing Script", "Snell Roundhand", "Segoe Script", cursive;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+    html, body { margin: 0; padding: 0; }
+
+    body {
+      background:
+        radial-gradient(1200px 800px at 50% -10%, #1f1710 0%, var(--bg) 60%),
+        var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---------- Hero (fyller skjermen ved åpning) ---------- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 24px 90px;
+      position: relative;
+    }
+    .hero img {
+      max-height: 86vh;
+      max-width: min(100%, 620px);
+      width: auto;
+      height: auto;
+      border-radius: 14px;
+      border: 1px solid var(--gold-dim);
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.4),
+        0 30px 80px rgba(0,0,0,0.65),
+        0 0 60px rgba(214, 176, 106, 0.08);
+    }
+
+    /* ---------- Scroll-hint ---------- */
+    .scroll-hint {
+      position: absolute;
+      bottom: 26px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--gold);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: var(--sans);
+    }
+    .scroll-hint .scroll-text {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+    .scroll-hint .chevron {
+      display: block;
+      width: 16px;
+      height: 16px;
+      border-right: 2px solid var(--gold);
+      border-bottom: 2px solid var(--gold);
+      transform: rotate(45deg);
+      animation: bob 1.8s ease-in-out infinite;
+    }
+    @keyframes bob {
+      0%, 100% { transform: rotate(45deg) translate(0, 0); opacity: 0.5; }
+      50%      { transform: rotate(45deg) translate(4px, 4px); opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-hint .chevron { animation: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ---------- Reservasjonsseksjon ---------- */
+    .reservation-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 64px 24px;
+    }
+
+    .reservation {
+      background: linear-gradient(180deg, var(--panel), var(--bg-2));
+      border: 1px solid var(--gold-dim);
+      border-radius: 14px;
+      padding: 44px 38px;
+      max-width: 520px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      position: relative;
+    }
+    .reservation::before {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(214, 176, 106, 0.15);
+      border-radius: 9px;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gold);
+      text-align: center;
+      margin: 0 0 10px;
+    }
+    .reservation h1 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 40px;
+      letter-spacing: 1px;
+      color: var(--text);
+      text-align: center;
+      margin: 0 0 6px;
+    }
+    .tagline {
+      font-family: var(--script);
+      font-size: 24px;
+      color: var(--gold-soft);
+      text-align: center;
+      margin: 0 0 28px;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      color: var(--gold);
+      margin: 0 0 28px;
+    }
+    .divider::before,
+    .divider::after {
+      content: "";
+      height: 1px;
+      width: 60px;
+      background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    }
+    .divider span { font-size: 16px; }
+
+    .details {
+      list-style: none;
+      margin: 0 0 30px;
+      padding: 0;
+    }
+    .details li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 14px 4px;
+      border-bottom: 1px solid rgba(214, 176, 106, 0.12);
+    }
+    .details li:last-child { border-bottom: none; }
+    .details .label {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+    .details .value {
+      font-family: var(--serif);
+      font-size: 22px;
+      color: var(--text);
+    }
+
+    .confirm-btn {
+      display: block;
+      width: 100%;
+      padding: 16px 20px;
+      background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+      color: #2a1e0d;
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      box-shadow: 0 8px 24px rgba(214, 176, 106, 0.25);
+    }
+    .confirm-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(214, 176, 106, 0.35);
+      filter: brightness(1.04);
+    }
+    .confirm-btn:active { transform: translateY(0); }
+
+    .confirmed {
+      text-align: center;
+      margin-top: 4px;
+    }
+    .confirmed .check {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 28px;
+      margin-bottom: 16px;
+      animation: pop 0.4s ease;
+    }
+    @keyframes pop {
+      0% { transform: scale(0.4); opacity: 0; }
+      70% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .confirmed h2 {
+      font-family: var(--serif);
+      font-size: 30px;
+      color: var(--text);
+      margin: 0 0 8px;
+    }
+    .confirmed p {
+      color: var(--text-dim);
+      font-size: 15px;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .hidden { display: none; }
+
+    footer {
+      color: var(--text-dim);
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-align: center;
+      padding: 8px 24px 32px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero: bildet fyller skjermen ved åpning -->
+  <section class="hero" id="top">
+    <img
+      src="assets/pernille_henrik_restaurant_bilde.png"
+      alt="Pernille og Henrik lager mat på restaurantkjøkkenet"
+    />
+    <a class="scroll-hint" href="#reservasjon" aria-label="Bla ned til reservasjonen">
+      <span class="scroll-text">Bla ned</span>
+      <span class="chevron" aria-hidden="true"></span>
+    </a>
+  </section>
+
+  <!-- Reservasjon: vises når man blar ned -->
+  <section class="reservation-section" id="reservasjon">
+    <div class="reservation" aria-live="polite">
+      <!-- Utgangstilstand -->
+      <div id="reservation-form">
+        <p class="eyebrow">Din reservasjon</p>
+        <h1>Velkommen til bords</h1>
+        <p class="tagline">Vi gleder oss til å se dere</p>
+
+        <div class="divider"><span>&#9825;</span></div>
+
+        <ul class="details">
+          <li>
+            <span class="label">Dato</span>
+            <span class="value">15. juli 2026</span>
+          </li>
+          <li>
+            <span class="label">Tid</span>
+            <span class="value">kl. 18:00</span>
+          </li>
+          <li>
+            <span class="label">Antall gjester</span>
+            <span class="value">2 personer</span>
+          </li>
+        </ul>
+
+        <button class="confirm-btn" id="confirmBtn" type="button">
+          Bekreft reservasjon
+        </button>
+      </div>
+
+      <!-- Bekreftet tilstand -->
+      <div id="reservation-confirmed" class="confirmed hidden">
+        <div class="check">&#10003;</div>
+        <h2>Reservasjon bekreftet</h2>
+        <p>
+          Tusen takk! Vi har notert bordet ditt<br />
+          <strong>15. juli 2026 kl. 18:00 for 2 personer.</strong><br /><br />
+          Vi gleder oss til å ta imot dere hos Pernille &amp; Henrik.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    PERNILLE &amp; HENRIK &nbsp;•&nbsp; KJØKKEN &amp; KJÆRLIGHET
+  </footer>
+
+  <script>
+    (function () {
+      var btn = document.getElementById("confirmBtn");
+      var formView = document.getElementById("reservation-form");
+      var confirmedView = document.getElementById("reservation-confirmed");
+
+      btn.addEventListener("click", function () {
+        formView.classList.add("hidden");
+        confirmedView.classList.remove("hidden");
+      });
+    })();
+  </script>
+</body>
+</html>
