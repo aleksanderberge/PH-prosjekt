@@ -28,8 +28,55 @@
 
     * { box-sizing: border-box; }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
     html, body { margin: 0; padding: 0; }
+
+    /* ---------- Navigasjon ---------- */
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 30px;
+      background: linear-gradient(180deg, rgba(14,11,8,0.9) 0%, rgba(14,11,8,0) 100%);
+    }
+    .site-nav .brand {
+      font-family: var(--serif);
+      font-weight: 600;
+      color: var(--gold);
+      font-size: 22px;
+      letter-spacing: 3px;
+      text-decoration: none;
+    }
+    .site-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+    .site-nav a.nav-link {
+      color: var(--text);
+      text-decoration: none;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+    }
+    .site-nav a.nav-link:hover { color: var(--gold); }
+    @media (max-width: 520px) {
+      .site-nav { padding: 14px 18px; gap: 10px; }
+      .site-nav .brand { font-size: 18px; letter-spacing: 2px; }
+      .site-nav ul { gap: 16px; }
+      .site-nav a.nav-link { font-size: 11px; letter-spacing: 1px; }
+    }
 
     body {
       background:
@@ -103,6 +150,266 @@
     @media (prefers-reduced-motion: reduce) {
       .scroll-hint .chevron { animation: none; }
       html { scroll-behavior: auto; }
+    }
+
+    /* ---------- Meny ---------- */
+    .menu-section {
+      padding: 80px 24px;
+      display: flex;
+      justify-content: center;
+    }
+    .menu-inner {
+      width: 100%;
+      max-width: 720px;
+    }
+    .menu-header {
+      text-align: center;
+      margin-bottom: 54px;
+    }
+    .menu-header .eyebrow { margin-bottom: 12px; }
+    .menu-header h2 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 46px;
+      letter-spacing: 1px;
+      color: var(--text);
+      margin: 0;
+    }
+    .menu-header .tagline {
+      margin: 6px 0 0;
+    }
+
+    .menu-category { margin-bottom: 48px; }
+    .menu-category:last-child { margin-bottom: 0; }
+
+    .menu-cat-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      font-family: var(--serif);
+      font-size: 26px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin: 0 0 28px;
+    }
+    .menu-cat-title::before,
+    .menu-cat-title::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      max-width: 90px;
+      background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    }
+
+    .menu-item { margin-bottom: 24px; }
+    .menu-item:last-child { margin-bottom: 0; }
+    .menu-item-head {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .menu-item-head .name {
+      font-family: var(--serif);
+      font-size: 22px;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .menu-item-head .dots {
+      flex: 1;
+      border-bottom: 1px dotted rgba(214, 176, 106, 0.35);
+      transform: translateY(-4px);
+    }
+    .menu-item-head .price {
+      font-family: var(--serif);
+      font-size: 22px;
+      color: var(--gold-soft);
+      white-space: nowrap;
+    }
+    .menu-item .desc {
+      margin: 4px 0 0;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text-dim);
+      max-width: 90%;
+    }
+    @media (max-width: 520px) {
+      .menu-item-head .name { white-space: normal; }
+      .menu-header h2 { font-size: 38px; }
+    }
+
+    /* ---------- Galleri ---------- */
+    .gallery-section {
+      padding: 80px 24px;
+      display: flex;
+      justify-content: center;
+    }
+    .gallery-inner {
+      width: 100%;
+      max-width: 1080px;
+    }
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 46px;
+    }
+    .gallery-header .eyebrow { margin-bottom: 12px; }
+    .gallery-header h2 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 46px;
+      letter-spacing: 1px;
+      color: var(--text);
+      margin: 0;
+    }
+    .gallery-grid {
+      column-count: 3;
+      column-gap: 16px;
+    }
+    .gallery-item {
+      break-inside: avoid;
+      margin: 0 0 16px;
+      padding: 0;
+      border: 1px solid var(--gold-dim);
+      border-radius: 12px;
+      overflow: hidden;
+      background: none;
+      cursor: pointer;
+      display: block;
+      width: 100%;
+      line-height: 0;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .gallery-item:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.55), 0 0 30px rgba(214,176,106,0.12);
+    }
+    @media (max-width: 860px) {
+      .gallery-grid { column-count: 2; }
+      .gallery-header h2 { font-size: 40px; }
+    }
+    @media (max-width: 520px) {
+      .gallery-grid { column-count: 1; }
+      .gallery-header h2 { font-size: 34px; }
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      background: rgba(8, 6, 4, 0.92);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 88vh;
+      border-radius: 10px;
+      border: 1px solid var(--gold-dim);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+    }
+    .lightbox .close {
+      position: absolute;
+      top: 22px;
+      right: 26px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid var(--gold-dim);
+      background: rgba(28, 21, 14, 0.8);
+      color: var(--gold);
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+    .lightbox .close:hover { border-color: var(--gold); color: var(--gold-soft); }
+
+    /* ---------- Om oss ---------- */
+    .about-section {
+      padding: 80px 24px;
+      display: flex;
+      justify-content: center;
+      background:
+        radial-gradient(900px 600px at 50% 0%, rgba(214,176,106,0.05), transparent 70%);
+    }
+    .about-inner {
+      width: 100%;
+      max-width: 680px;
+      text-align: center;
+    }
+    .about-inner .eyebrow { margin-bottom: 12px; }
+    .about-inner h2 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 46px;
+      letter-spacing: 1px;
+      color: var(--text);
+      margin: 0 0 8px;
+    }
+    .about-inner .tagline {
+      font-family: var(--script);
+      font-size: 24px;
+      color: var(--gold-soft);
+      margin: 0 0 36px;
+    }
+    .about-inner p.body {
+      font-family: var(--serif);
+      font-size: 19px;
+      line-height: 1.75;
+      color: var(--text-dim);
+      margin: 0 auto 22px;
+    }
+    .about-inner p.body strong { color: var(--text); font-weight: 600; }
+
+    .about-quote {
+      margin: 40px auto 8px;
+      padding: 30px 28px 24px;
+      border-top: 1px solid var(--gold-dim);
+      border-bottom: 1px solid var(--gold-dim);
+      position: relative;
+    }
+    .about-quote p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 23px;
+      line-height: 1.6;
+      color: var(--text);
+      margin: 0 0 14px;
+    }
+    .about-quote .heart {
+      color: var(--gold);
+      font-size: 18px;
+      display: block;
+      margin-bottom: 14px;
+    }
+    .about-quote cite {
+      font-family: var(--sans);
+      font-style: normal;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 12px;
+      color: var(--gold);
+    }
+    @media (max-width: 520px) {
+      .about-inner h2 { font-size: 38px; }
+      .about-inner p.body { font-size: 17px; }
     }
 
     /* ---------- Reservasjonsseksjon ---------- */
@@ -303,6 +610,17 @@
   </style>
 </head>
 <body>
+  <!-- Navigasjon -->
+  <nav class="site-nav">
+    <a class="brand" href="#top" aria-label="Pernille &amp; Henrik – til toppen">P&amp;H</a>
+    <ul>
+      <li><a class="nav-link" href="#meny">Meny</a></li>
+      <li><a class="nav-link" href="#om-oss">Om oss</a></li>
+      <li><a class="nav-link" href="#galleri">Galleri</a></li>
+      <li><a class="nav-link" href="#reservasjon">Reservasjon</a></li>
+    </ul>
+  </nav>
+
   <!-- Hero: bildet fyller skjermen ved åpning -->
   <section class="hero" id="top">
     <video
@@ -315,11 +633,216 @@
     >
       <source src="assets/pernille_henrik_hero.mp4" type="video/mp4" />
     </video>
-    <a class="scroll-hint" href="#reservasjon" aria-label="Bla ned til reservasjonen">
-      <span class="scroll-text">Bla ned</span>
+    <a class="scroll-hint" href="#meny" aria-label="Bla ned til menyen">
+      <span class="scroll-text">Se menyen</span>
       <span class="chevron" aria-hidden="true"></span>
     </a>
   </section>
+
+  <!-- Meny -->
+  <section class="menu-section" id="meny">
+    <div class="menu-inner">
+      <div class="menu-header">
+        <p class="eyebrow">Vår meny</p>
+        <h2>Kveldens utvalg</h2>
+        <p class="tagline">Laget med lidenskap – servert med stolthet</p>
+      </div>
+
+      <div class="menu-category">
+        <h3 class="menu-cat-title">Forrett &amp; småretter</h3>
+
+        <div class="menu-item">
+          <div class="menu-item-head">
+            <span class="name">Pinsa &amp; tzatziki</span>
+            <span class="dots"></span>
+            <span class="price">145,-</span>
+          </div>
+          <p class="desc">Luftig, sprøstekt surdeigspinsa med hjemmelaget tzatziki av gresk yoghurt, sprø agurk, hvitløk og sitron. Toppet med friske urter og en skvett kaldpresset olivenolje.</p>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-head">
+            <span class="name">Limemarinert laks på nachos</span>
+            <span class="dots"></span>
+            <span class="price">165,-</span>
+          </div>
+          <p class="desc">Limemarinert laks fra Tollerstranden på sprø maisnachos, med soltørket tomat, frisk chili, rødløk og koriander. Servert med en syrlig limecrème.</p>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-head">
+            <span class="name">Kremet skalldyrsuppe</span>
+            <span class="dots"></span>
+            <span class="price">155,-</span>
+          </div>
+          <p class="desc">Fyldig suppe kokt på norske skalldyr med reker, dill, en dæsj konjakk og kremet fløte. Serveres med nybakt brød.</p>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-head">
+            <span class="name">Burrata &amp; tomat</span>
+            <span class="dots"></span>
+            <span class="price">149,-</span>
+          </div>
+          <p class="desc">Kremet burrata med solmodne tomater fra Gros Gartneri, fersk basilikum, ristede pinjekjerner og kaldpresset olivenolje. Avsluttet med flak av havsalt.</p>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <h3 class="menu-cat-title">Hovedretter</h3>
+
+        <div class="menu-item">
+          <div class="menu-item-head">
+            <span class="name">Helstekt ytrefilet</span>
+            <span class="dots"></span>
+            <span class="price">365,-</span>
+          </div>
+          <p class="desc">Mørt, helstekt ytrefilet av norsk storfe fra Støtvig Gård, servert med grillede grønnsaker fra Gros Gartneri, nypoteter fra Bjertnes og Hoel og vår hjemmelagde bearnaisesaus.</p>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-head">
+            <span class="name">Pannestekt torsk</span>
+            <span class="dots"></span>
+            <span class="price">295,-</span>
+          </div>
+          <p class="desc">Sprøstekt torskerygg fra Tollerstranden med brunet smør, sesongens erter, sprøstekt bacon og kremet potetpuré.</p>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-head">
+            <span class="name">Confitert andelår</span>
+            <span class="dots"></span>
+            <span class="price">315,-</span>
+          </div>
+          <p class="desc">Langtidskokt andelår med glaserte rotgrønnsaker fra Gros Gartneri, potetfondant og en fyldig rødvinssaus smaksatt med timian.</p>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-head">
+            <span class="name">Kremet sopprisotto</span>
+            <span class="dots"></span>
+            <span class="price">245,-</span>
+          </div>
+          <p class="desc">Fløyelsmyk risotto med skogssopp, ferske urter fra Gros Gartneri, parmesan og timian, ferdigstilt med brunet smør. Vegetar.</p>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <h3 class="menu-cat-title">Dessert</h3>
+
+        <div class="menu-item">
+          <div class="menu-item-head">
+            <span class="name">Utvalg av is</span>
+            <span class="dots"></span>
+            <span class="price">95,-</span>
+          </div>
+          <p class="desc">Utvalg av hjemmelaget is og sorbet kinnet hos Titen &amp; Jorun – spør servitøren om kveldens smaker.</p>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-head">
+            <span class="name">Sjokoladefondant</span>
+            <span class="dots"></span>
+            <span class="price">125,-</span>
+          </div>
+          <p class="desc">Varm sjokoladefondant med flytende kjerne, servert med vaniljeis og friske, syrlige bær.</p>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-head">
+            <span class="name">Crème brûlée</span>
+            <span class="dots"></span>
+            <span class="price">115,-</span>
+          </div>
+          <p class="desc">Klassisk crème brûlée med sprøtt karamelllokk, ekte vaniljefrø og friske bær.</p>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-head">
+            <span class="name">Norsk ostetallerken</span>
+            <span class="dots"></span>
+            <span class="price">135,-</span>
+          </div>
+          <p class="desc">Utvalgte norske oster fra Titen &amp; Jorun, servert med knekkebrød, honning og hjemmelaget syltetøy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Om oss -->
+  <section class="about-section" id="om-oss">
+    <div class="about-inner">
+      <p class="eyebrow">Om oss</p>
+      <h2>Søsknene bak bordet</h2>
+      <p class="tagline">Kjøkken &amp; kjærlighet</p>
+
+      <p class="body">
+        Pernille og Henrik er søsken – og to kokker som har brynt seg på noen av
+        verdens fremste kjøkken. <strong>Henrik</strong> lærte håndverket ved
+        <strong>Maaemo</strong> og <strong>Statholdergaarden</strong> i Oslo, før
+        han reiste ut til <strong>Noma</strong> i København og <strong>Frantzén</strong>
+        i Stockholm. <strong>Pernille</strong> foredlet sitt kjøkken hos
+        <strong>Credo</strong> i Trondheim og <strong>RE-NAA</strong> i Stavanger,
+        med en uforglemmelig sesong ved <strong>El Celler de Can Roca</strong> i Spania.
+      </p>
+
+      <p class="body">
+        Nå har de vendt hjem til ærverdige lokaler på <strong>Larkollen</strong> for å
+        vise hva det moderne norske kjøkkenet virkelig har å by på. Her møtes teknikk
+        fra verdens storkjøkken og de aller beste lokale råvarene – laks og fisk fra
+        Tollerstranden, kjøtt fra Støtvig Gård, grønnsaker fra Gros Gartneri, nypoteter
+        fra Bjertnes og Hoel og oster og is fra Titen &amp; Jorun.
+      </p>
+
+      <p class="body">
+        Men like mye som maten, handler stedet om en arv. Restauranten er en hyllest
+        til bestemødrene deres – til alt de lærte to søsken om raushet, omsorg og
+        gleden ved å samle mennesker rundt et bord.
+      </p>
+
+      <blockquote class="about-quote">
+        <span class="heart" aria-hidden="true">&#9825;</span>
+        <p>«Hver eneste dag skal vi yte en service på høyde med den mormor og farmor
+        alltid har gitt oss – der ingen gjest er en fremmed, og alle går mette og litt
+        mer elsket hjem.»</p>
+        <cite>Pernille &amp; Henrik</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Galleri -->
+  <section class="gallery-section" id="galleri">
+    <div class="gallery-inner">
+      <div class="gallery-header">
+        <p class="eyebrow">Galleri</p>
+        <h2>Et lite innblikk</h2>
+      </div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-full="assets/galleri-spisesal.png">
+          <img src="assets/galleri-spisesal.png" alt="Dekket langbord i den stemningsfulle spisesalen" loading="lazy" />
+        </button>
+        <button class="gallery-item" type="button" data-full="assets/galleri-retter.png">
+          <img src="assets/galleri-retter.png" alt="Utvalg av retter fra kjøkkenet" loading="lazy" />
+        </button>
+        <button class="gallery-item" type="button" data-full="assets/galleri-terrasse.png">
+          <img src="assets/galleri-terrasse.png" alt="Terrassen ved solnedgang med utsikt mot sjøen" loading="lazy" />
+        </button>
+        <button class="gallery-item" type="button" data-full="assets/galleri-stue.png">
+          <img src="assets/galleri-stue.png" alt="Koselig stue med kurvstoler og levende lys" loading="lazy" />
+        </button>
+        <button class="gallery-item" type="button" data-full="assets/galleri-hage.png">
+          <img src="assets/galleri-hage.png" alt="Hagen med lyslenker og levende musikk en sommerkveld" loading="lazy" />
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox for galleriet -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Forstørret bilde">
+    <button class="close" id="lightboxClose" type="button" aria-label="Lukk">&times;</button>
+    <img id="lightboxImg" src="" alt="" />
+  </div>
 
   <!-- Reservasjon: vises når man blar ned -->
   <section class="reservation-section" id="reservasjon">
@@ -399,6 +922,39 @@
         if (map && !map.src) {
           map.src = map.dataset.src;
         }
+      });
+
+      // Lightbox for galleriet
+      var lightbox = document.getElementById("lightbox");
+      var lightboxImg = document.getElementById("lightboxImg");
+      var lightboxClose = document.getElementById("lightboxClose");
+      var galleryItems = document.querySelectorAll(".gallery-item");
+
+      function openLightbox(src, alt) {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || "";
+        lightbox.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeLightbox() {
+        lightbox.classList.remove("open");
+        document.body.style.overflow = "";
+        lightboxImg.src = "";
+      }
+
+      galleryItems.forEach(function (item) {
+        item.addEventListener("click", function () {
+          var img = item.querySelector("img");
+          openLightbox(item.dataset.full, img ? img.alt : "");
+        });
+      });
+
+      lightboxClose.addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", function (e) {
+        if (e.target === lightbox) closeLightbox();
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
       });
     })();
   </script>
