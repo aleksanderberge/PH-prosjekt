@@ -50,7 +50,8 @@
       padding: 28px 24px 90px;
       position: relative;
     }
-    .hero img {
+    .hero img,
+    .hero video {
       max-height: 86vh;
       max-width: min(100%, 620px);
       width: auto;
@@ -304,10 +305,16 @@
 <body>
   <!-- Hero: bildet fyller skjermen ved åpning -->
   <section class="hero" id="top">
-    <img
-      src="assets/pernille_henrik_restaurant_bilde.png"
-      alt="Pernille og Henrik lager mat på restaurantkjøkkenet"
-    />
+    <video
+      autoplay
+      loop
+      muted
+      playsinline
+      poster="assets/pernille_henrik_restaurant_bilde.png"
+      aria-label="Pernille og Henrik lager mat på restaurantkjøkkenet"
+    >
+      <source src="assets/pernille_henrik_hero.mp4" type="video/mp4" />
+    </video>
     <a class="scroll-hint" href="#reservasjon" aria-label="Bla ned til reservasjonen">
       <span class="scroll-text">Bla ned</span>
       <span class="chevron" aria-hidden="true"></span>
